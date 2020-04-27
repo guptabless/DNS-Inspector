@@ -1,15 +1,16 @@
 import dns.resolver
 import bcolors
+import sys
 
 print("-----------------------------------------------")
+print("DNSRecord.py")
 print("Code By : NG")
-print("Usage: python dnsinspector.py and then follow the instructions")
+print("Usage: python dnsinspector.py <domain_name>")
 print("Give URl without http:// or https://")
 print("-----------------------------------------------")
 
-url = str(input(bcolors.BLUE + "Enter URL For which you want to check DNS record"))
-
-print(bcolors.BLUE + '********CNAME Record***********')
+url = sys.argv[1]
+print(bcolors.BLUE + '********CNAME Record******')
 try:
     cname_user = dns.resolver.query(url, 'CNAME')
     for data in cname_user:
@@ -30,7 +31,7 @@ except :
     print(bcolors.ERRMSG + "MX Record Not found"+ '\n')
 
 #A record
-print('\n'+ bcolors.BLUE +  '************A Record********')
+print('\n'+ bcolors.BLUE +  '************A Record***************')
 try:
     a_user = dns.resolver.query(url, 'A')
     for adata in a_user:
